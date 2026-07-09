@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const path = require('path');
+const transactionRoutes = require('./routes/transactionRoutes');
 require('dotenv').config();
 
 const userRoutes = require('./routes/userRoutes');
@@ -10,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use('/api/transactions', transactionRoutes);
 app.use(session({
     secret: process.env.SESSION_SECRET || 'supersecretkey',
     resave: false,
